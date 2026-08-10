@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>點名單</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <section class="login-view" id="loginView">
+      <form class="login-card" id="loginForm">
+        <h1>點名單登入</h1>
+        <label>
+          帳號
+          <input id="loginUsername" type="text" autocomplete="username" required />
+        </label>
+        <label>
+          密碼
+          <input id="loginPassword" type="password" autocomplete="current-password" required />
+        </label>
+        <label class="remember-row">
+          <input id="rememberLogin" type="checkbox" />
+          <span>記住帳號密碼</span>
+        </label>
+        <p id="loginError" class="form-error"></p>
+        <button type="submit">登入</button>
+      </form>
+    </section>
+
+    <header class="topbar app-shell" hidden>
+      <div>
+        <h1>點名單</h1>
+        <p id="clock">--</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="status-pill" id="connectionStatus">連線中</div>
+        <button type="button" class="secondary" id="logoutButton">登出</button>
+      </div>
+    </header>
+
+    <main class="app-shell" hidden>
+      <section class="toolbar" aria-label="分類與匯入">
+        <div class="category-tabs" id="categoryTabs"></div>
+        <label class="import-button">
+          匯入 JSON
+          <input id="importFile" type="file" accept=".json,application/json" />
+        </label>
+      </section>
+
+      <section class="summary-grid" aria-label="出席摘要">
+        <article class="summary-card">
+          <span>應到</span>
+          <strong id="expectedCount">0</strong>
+          <small>員</small>
+        </article>
+        <article class="summary-card incident">
+          <span>事故合計</span>
+          <strong id="incidentCount">0</strong>
+          <small>員事故</small>
+        </article>
+        <article class="summary-card actual">
+          <span>實到</span>
+          <strong id="actualCount">0</strong>
+          <small>員</small>
+        </article>
+      </section>
+
+      <section class="scope-filter" id="scopeFilter" hidden>
+        <span>統計單位</span>
+        <div id="scopeCategoryList" class="scope-category-list"></div>
+      </section>
+
+      <section class="incident-grid" id="incidentCards" aria-label="事故統計" hidden></section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>事故類型</h2>
+          <form id="incidentTypeForm" class="inline-form">
+            <input id="newIncidentType" type="text" maxlength="16" placeholder="新增事故類型" autocomplete="off" />
+            <button type="submit">新增</button>
+          </form>
+        </div>
+        <div id="incidentTypeList" class="type-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>人員清單</h2>
+          <input id="searchInput" type="search" placeholder="搜尋姓名或編號" />
+        </div>
+        <div class="bulk-actions" id="bulkActions" hidden>
+          <strong id="selectedCount">已選 0 人</strong>
+          <select id="batchIncidentType" aria-label="批次事故類型"></select>
+          <input id="batchStartAt" type="datetime-local" aria-label="批次開始時間" />
+          <input id="batchEndAt" type="datetime-local" aria-label="批次結束時間" />
+          <input id="batchNote" type="text" maxlength="240" placeholder="備註" aria-label="批次備註" />
+          <button type="button" id="applyBatchIncident">批次登記</button>
+          <button type="button" class="secondary" id="clearSelection">清除</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="select-col">
+                  <input id="selectVisiblePeople" type="checkbox" aria-label="勾選目前清單可登記人員" />
+                </th>
+                <th>姓名</th>
+                <th>編號</th>
+                <th>分類</th>
+                <th>狀態</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="peopleRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel" id="activeIncidentsPanel" hidden>
+        <div class="panel-header">
+          <h2>目前事故</h2>
+        </div>
+        <div id="activeIncidents" class="incident-groups"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>歷史紀錄</h2>
+          <form id="historyFilters" class="filters">
+            <input id="historyDate" type="date" />
+            <input id="historyPerson" type="search" placeholder="人員姓名或編號" />
+            <select id="historyType">
+              <option value="全部">全部事故</option>
+            </select>
+            <button type="submit">篩選</button>
+          </form>
+        </div>
+        <div id="historyRows" class="history-list"></div>
+      </section>
+    </main>
+
+    <dialog id="incidentDialog">
+      <form method="dialog" class="dialog-card" id="incidentForm">
+        <div class="dialog-header">
+          <h2 id="dialogTitle">登記事故</h2>
+          <button class="icon-button" type="button" id="closeDialog" aria-label="關閉">×</button>
+        </div>
+        <input type="hidden" id="incidentId" />
+        <input type="hidden" id="personId" />
+        <label>
+          人員
+          <input id="personLabel" type="text" disabled />
+        </label>
+        <label>
+          事故類型
+          <select id="incidentType" required></select>
+        </label>
+        <label>
+          開始時間
+          <input id="startAt" type="datetime-local" required />
+        </label>
+        <label id="endAtLabel">
+          結束時間
+          <input id="endAt" type="datetime-local" />
+        </label>
+        <label>
+          備註
+          <textarea id="note" rows="3" maxlength="240" placeholder="簡短說明"></textarea>
+        </label>
+        <p id="formError" class="form-error"></p>
+        <div class="dialog-actions">
+          <button type="button" class="secondary" id="cancelDialog">取消</button>
+          <button type="submit">儲存</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="incidentPeopleDialog">
+      <div class="dialog-card">
+        <div class="dialog-header">
+          <h2 id="incidentPeopleTitle">事故人員</h2>
+          <button class="icon-button" type="button" id="closeIncidentPeople" aria-label="關閉">×</button>
+        </div>
+        <div id="incidentPeopleList" class="incident-people-list"></div>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

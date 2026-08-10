@@ -1,0 +1,178 @@
+{
+  "people": [
+    {
+      "id": "CADRE-001",
+      "name": "姜昶安",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-002",
+      "name": "王品傑",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-003",
+      "name": "邱治瑋",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-004",
+      "name": "楊長珩",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-005",
+      "name": "葉冠廷",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-006",
+      "name": "胡竣傑",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-007",
+      "name": "賴冠廷",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-008",
+      "name": "林師賢",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-009",
+      "name": "吳瑞恆",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "G4-001",
+      "name": "李承耘",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-010",
+      "name": "徐士幃",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-011",
+      "name": "洪佳輝",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-012",
+      "name": "李亦騰",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-013",
+      "name": "黄彥程",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-014",
+      "name": "鄭宇祐",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-015",
+      "name": "陳睿華",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-016",
+      "name": "宋佳銘",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-017",
+      "name": "陳玄智",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-018",
+      "name": "楊翔名",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-019",
+      "name": "王昱竑",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-020",
+      "name": "呂學濱",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-021",
+      "name": "王建榮",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-022",
+      "name": "呂敬原",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-023",
+      "name": "徐承煒",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-024",
+      "name": "曾禹程",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-025",
+      "name": "黃民宇",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-026",
+      "name": "李亮寬",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "CADRE-027",
+      "name": "邱鐙毅",
+      "category": "學生幹部",
+      "enabled": true
+    },
+    {
+      "id": "G4-012",
+      "name": "林昱廷",
+      "category": "學生幹部",
+      "enabled": true
+    }
+  ]
+}

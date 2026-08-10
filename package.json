@@ -1,0 +1,20 @@
+{
+  "name": "attendance-roster",
+  "version": "1.0.0",
+  "description": "前後端分離的點名單網頁",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "check": "node --check server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "luxon": "^3.5.0",
+    "zod": "^3.23.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

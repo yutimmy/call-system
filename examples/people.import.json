@@ -1,0 +1,712 @@
+{
+  "people": [
+    {
+      "id": "G4-001",
+      "name": "李承耘",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-002",
+      "name": "莊岳恩",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-003",
+      "name": "詹鈺晨",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-004",
+      "name": "戴任崴",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-005",
+      "name": "林家齊",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-006",
+      "name": "葉子衡",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-007",
+      "name": "李易霖",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-008",
+      "name": "曾柏森",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-009",
+      "name": "卓維仁",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-010",
+      "name": "廖紘緯",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-011",
+      "name": "葉柏辰",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-012",
+      "name": "林昱廷",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-013",
+      "name": "張晧霆",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-014",
+      "name": "林晟楷",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-015",
+      "name": "吳文廷",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-016",
+      "name": "林玠甫",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-017",
+      "name": "謝宇軒",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-018",
+      "name": "何祈叡",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-019",
+      "name": "陳澔圻",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-020",
+      "name": "屠威愷",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-021",
+      "name": "黃聖家",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-022",
+      "name": "陳韋翰",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-023",
+      "name": "楊珮晨",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-024",
+      "name": "郭誼潔",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-025",
+      "name": "陳韋含",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-026",
+      "name": "孫光人",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-027",
+      "name": "蔡睿云",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-028",
+      "name": "鍾旻珈",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-029",
+      "name": "莊紫琳",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-030",
+      "name": "張霈妮",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-031",
+      "name": "簡昱庭",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-032",
+      "name": "鄭雅勻",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-033",
+      "name": "張舒涵",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-034",
+      "name": "林滋茵",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-035",
+      "name": "李子宜",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G4-036",
+      "name": "楊詠評",
+      "category": "四年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-001",
+      "name": "鄭凱駿",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-002",
+      "name": "陳彥錚",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-003",
+      "name": "蔡承寰",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-004",
+      "name": "黃韋誠",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-005",
+      "name": "邊逸晨",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-006",
+      "name": "邱柏升",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-007",
+      "name": "利昀洋",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-008",
+      "name": "李彥霈",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-009",
+      "name": "楊謹瑞",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-010",
+      "name": "趙紜筠",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-011",
+      "name": "李紫紹",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-012",
+      "name": "劉芷彤",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-013",
+      "name": "林筠庭",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-014",
+      "name": "郁潔榆",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-015",
+      "name": "洪蜜霜",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-016",
+      "name": "鄭羽喬",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-017",
+      "name": "賴筠婷",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-018",
+      "name": "陳柔蒨",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-019",
+      "name": "陳宇珊",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-020",
+      "name": "謝佳蒓",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-021",
+      "name": "黃郁琁",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G3-022",
+      "name": "吳䋭琳",
+      "category": "三年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-001",
+      "name": "吳丞洋",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-002",
+      "name": "賴至筌",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-003",
+      "name": "翁宸浩",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-004",
+      "name": "林愷御",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-005",
+      "name": "洪界宸",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-006",
+      "name": "何仁傑",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-007",
+      "name": "詹少甫",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-008",
+      "name": "李承憲",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-009",
+      "name": "吳秉霖",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-010",
+      "name": "劉恩瑋",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-011",
+      "name": "吳丞鈞",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-012",
+      "name": "吳泓廷",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-013",
+      "name": "林孝澤",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-014",
+      "name": "黃衍熏",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-015",
+      "name": "游景清",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-016",
+      "name": "黃俊維",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-017",
+      "name": "李俊緯",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-018",
+      "name": "黃偉翔",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-019",
+      "name": "劉佳城",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-020",
+      "name": "黃睿祺",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-021",
+      "name": "馬宥伶",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-022",
+      "name": "吳品嫻",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-023",
+      "name": "許榆蓁",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-024",
+      "name": "陳子甯",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-025",
+      "name": "廖映承",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-026",
+      "name": "古芳僑",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-027",
+      "name": "郭妤恩",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-028",
+      "name": "朱沁儀",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-029",
+      "name": "邵俊翰",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-030",
+      "name": "黃立銘",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-031",
+      "name": "周棋惟",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-032",
+      "name": "謝鑫凱",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-033",
+      "name": "陳秉豐",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-034",
+      "name": "許博鑫",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-035",
+      "name": "陳士勝",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-036",
+      "name": "莊倧仰",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-037",
+      "name": "陳宥凱",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-038",
+      "name": "翁連寅",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-039",
+      "name": "王品驊",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-040",
+      "name": "郝柏勛",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-041",
+      "name": "洪宇澤",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-042",
+      "name": "鍾汶佑",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-043",
+      "name": "洪鈞洋",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-044",
+      "name": "彭乙宸",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-045",
+      "name": "呂俊融",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-046",
+      "name": "黃振洋",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-047",
+      "name": "吳宸宗",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-048",
+      "name": "林士鈞",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-049",
+      "name": "杜元傑",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-050",
+      "name": "許佳宜",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-051",
+      "name": "吳思樺",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-052",
+      "name": "蔡孟樺",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-053",
+      "name": "楊奕玟",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-054",
+      "name": "蔡舒晴",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-055",
+      "name": "徐祐儒",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-056",
+      "name": "陳姿羽",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-057",
+      "name": "陳又希",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-058",
+      "name": "周儀昕",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-059",
+      "name": "傅棋禎",
+      "category": "二年級",
+      "enabled": true
+    },
+    {
+      "id": "G2-060",
+      "name": "李瑀嫻",
+      "category": "二年級",
+      "enabled": true
+    }
+  ]
+}
