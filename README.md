@@ -19,10 +19,6 @@ http://localhost:3000
 
 預設登入帳密：
 
-```text
-帳號：qwertyuiop
-密碼：asdfghjkl
-```
 
 登入頁可勾選「記住帳號密碼」，之後同一台裝置會自動帶入並登入。
 
