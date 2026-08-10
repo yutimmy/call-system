@@ -84,6 +84,7 @@ textarea {
   background: white;
   color: var(--text);
   padding: 10px 12px;
+  min-width: 0;
 }
 
 textarea {
@@ -452,6 +453,7 @@ th {
   background: var(--surface-muted);
   color: var(--text);
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .badge.normal {
@@ -622,9 +624,16 @@ dialog::backdrop {
 }
 
 @media (max-width: 760px) {
+  body {
+    background: #f3f5f3;
+  }
+
   .topbar {
+    position: static;
     align-items: flex-start;
     flex-direction: column;
+    gap: 10px;
+    padding: 12px 14px;
   }
 
   .topbar-actions,
@@ -633,31 +642,110 @@ dialog::backdrop {
     width: 100%;
   }
 
-  main {
-    width: min(100vw - 20px, 1180px);
-    margin-top: 14px;
+  .topbar h1 {
+    font-size: 22px;
   }
 
-  .summary-grid,
+  .topbar p {
+    font-size: 13px;
+  }
+
+  main {
+    width: min(100vw - 12px, 1180px);
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  .toolbar {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .category-tabs {
+    width: 100%;
+    gap: 6px;
+    padding: 2px 0 6px;
+    scroll-snap-type: x proximity;
+  }
+
+  .category-tabs button {
+    min-height: 40px;
+    padding: 0 14px;
+    scroll-snap-align: start;
+  }
+
+  .import-button {
+    width: 100%;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .summary-card {
+    min-height: 86px;
+    padding: 10px;
+  }
+
+  .summary-card span,
+  .summary-card small {
+    font-size: 12px;
+  }
+
+  .summary-card strong {
+    margin-top: 6px;
+    font-size: 30px;
+  }
+
   .incident-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .incident-card {
+    min-height: 70px;
+    padding: 12px;
+  }
+
+  .incident-card strong {
+    font-size: 26px;
   }
 
   .scope-filter {
     align-items: stretch;
+    gap: 8px;
+    margin: 0 0 10px;
+    padding: 10px;
   }
 
-  .scope-category-list,
-  .scope-category-list label {
+  .scope-category-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
   }
 
+  .scope-category-list label {
+    width: 100%;
+    min-height: 40px;
+    border-radius: var(--radius);
+  }
+
   .panel {
-    padding: 14px;
+    margin-top: 10px;
+    padding: 12px;
   }
 
   .panel-header {
     align-items: stretch;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .panel h2 {
+    font-size: 18px;
   }
 
   .panel-header > input,
@@ -673,17 +761,59 @@ dialog::backdrop {
     max-width: none;
   }
 
+  .inline-form,
+  .filters {
+    gap: 8px;
+  }
+
+  .type-list {
+    gap: 6px;
+    max-height: 88px;
+    overflow: auto;
+  }
+
+  .type-list .badge {
+    min-height: 30px;
+  }
+
+  .bulk-actions {
+    position: sticky;
+    bottom: 8px;
+    z-index: 8;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 10px;
+    padding: 10px;
+    box-shadow: 0 8px 24px rgb(23 32 30 / 0.18);
+  }
+
+  .bulk-actions strong,
+  .bulk-actions #batchNote {
+    grid-column: 1 / -1;
+  }
+
+  .bulk-actions select,
+  .bulk-actions input,
+  .bulk-actions button {
+    min-width: 0;
+  }
+
   .incident-item,
   .history-item {
     grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px;
   }
 
   .incident-actions {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .incident-actions button {
-    flex: 1;
+    width: 100%;
   }
 
   .table-wrap {
@@ -700,17 +830,17 @@ dialog::backdrop {
 
   tbody {
     display: grid;
-    gap: 10px;
+    gap: 8px;
   }
 
   tr {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 8px 12px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 6px 10px;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: var(--surface);
-    padding: 12px;
+    padding: 10px;
   }
 
   td {
@@ -718,6 +848,8 @@ dialog::backdrop {
     gap: 2px;
     border: 0;
     padding: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   td::before {
@@ -731,8 +863,15 @@ dialog::backdrop {
     padding-top: 2px;
   }
 
+  td:nth-child(2) {
+    font-weight: 700;
+    font-size: 17px;
+  }
+
   td:nth-child(2)::before {
     content: "姓名";
+    font-weight: 500;
+    font-size: 12px;
   }
 
   td:nth-child(3)::before {
@@ -754,10 +893,80 @@ dialog::backdrop {
   .row-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 8px;
     width: 100%;
   }
 
   .row-actions button {
     width: 100%;
+    min-height: 42px;
+    padding: 0 10px;
+  }
+
+  dialog {
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 16px);
+  }
+
+  .dialog-card {
+    max-height: calc(100dvh - 16px);
+    overflow: auto;
+    padding: 14px;
+  }
+
+  .dialog-header h2 {
+    font-size: 18px;
+  }
+
+  .dialog-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dialog-actions button {
+    width: 100%;
+  }
+
+  .incident-people-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .login-view {
+    min-height: 100dvh;
+    padding: 12px;
+  }
+
+  .login-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .summary-card {
+    padding: 8px;
+  }
+
+  .summary-card strong {
+    font-size: 26px;
+  }
+
+  .summary-card span,
+  .summary-card small {
+    font-size: 11px;
+  }
+
+  .scope-category-list {
+    grid-template-columns: 1fr;
+  }
+
+  .bulk-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .row-actions,
+  .incident-actions,
+  .dialog-actions {
+    grid-template-columns: 1fr;
   }
 }
