@@ -4,6 +4,7 @@ const state = {
   selectedCategory: "全部",
   selectedScopeCategories: new Set(),
   selectedPersonIds: new Set(),
+  quickIncidentPersonId: null,
   deleteMode: false,
   people: [],
   summary: null,
@@ -36,7 +37,6 @@ const els = {
   scopeFilter: document.querySelector("#scopeFilter"),
   scopeCategoryList: document.querySelector("#scopeCategoryList"),
   incidentCards: document.querySelector("#incidentCards"),
-  quickIncidentType: document.querySelector("#quickIncidentType"),
   searchInput: document.querySelector("#searchInput"),
   toggleDeleteMode: document.querySelector("#toggleDeleteMode"),
   peopleRows: document.querySelector("#peopleRows"),
@@ -72,6 +72,10 @@ const els = {
   formError: document.querySelector("#formError"),
   closeDialog: document.querySelector("#closeDialog"),
   cancelDialog: document.querySelector("#cancelDialog"),
+  quickIncidentDialog: document.querySelector("#quickIncidentDialog"),
+  quickIncidentPerson: document.querySelector("#quickIncidentPerson"),
+  quickIncidentOptions: document.querySelector("#quickIncidentOptions"),
+  closeQuickIncident: document.querySelector("#closeQuickIncident"),
   incidentPeopleDialog: document.querySelector("#incidentPeopleDialog"),
   incidentPeopleTitle: document.querySelector("#incidentPeopleTitle"),
   incidentPeopleList: document.querySelector("#incidentPeopleList"),
@@ -356,12 +360,10 @@ function statusBadge(status) {
 function renderIncidentTypeControls() {
   const currentIncidentType = els.incidentType.value;
   const currentBatchIncidentType = els.batchIncidentType.value;
-  const currentQuickIncidentType = els.quickIncidentType.value;
   const currentHistoryType = els.historyType.value || "全部";
 
   els.incidentType.innerHTML = "";
   els.batchIncidentType.innerHTML = "";
-  els.quickIncidentType.innerHTML = "";
   for (const type of state.incidentTypes) {
     const option = document.createElement("option");
     option.value = type;
@@ -372,20 +374,12 @@ function renderIncidentTypeControls() {
     batchOption.value = type;
     batchOption.textContent = type;
     els.batchIncidentType.append(batchOption);
-
-    const quickOption = document.createElement("option");
-    quickOption.value = type;
-    quickOption.textContent = type;
-    els.quickIncidentType.append(quickOption);
   }
   if (state.incidentTypes.includes(currentIncidentType)) {
     els.incidentType.value = currentIncidentType;
   }
   if (state.incidentTypes.includes(currentBatchIncidentType)) {
     els.batchIncidentType.value = currentBatchIncidentType;
-  }
-  if (state.incidentTypes.includes(currentQuickIncidentType)) {
-    els.quickIncidentType.value = currentQuickIncidentType;
   }
 
   els.historyType.innerHTML = "";
@@ -408,6 +402,7 @@ function renderIncidentTypeControls() {
     badge.textContent = type;
     els.incidentTypeList.append(badge);
   }
+  renderQuickIncidentOptions();
 }
 
 function isSelectablePerson(person) {
@@ -476,6 +471,18 @@ function renderDeleteMode() {
   els.toggleDeleteMode.classList.toggle("secondary", !state.deleteMode);
   els.toggleDeleteMode.textContent = state.deleteMode ? "結束刪除" : "刪除模式";
   renderPeople();
+}
+
+function renderQuickIncidentOptions() {
+  els.quickIncidentOptions.innerHTML = "";
+  for (const type of state.incidentTypes) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.action = "choose-quick-incident";
+    button.dataset.incidentType = type;
+    button.textContent = type;
+    els.quickIncidentOptions.append(button);
+  }
 }
 
 function renderActiveIncidents() {
@@ -724,10 +731,16 @@ async function handleIncidentSubmit(event) {
   }
 }
 
-async function createQuickIncident(person) {
-  const type = els.quickIncidentType.value;
+function openQuickIncidentMenu(person) {
+  state.quickIncidentPersonId = person.id;
+  els.quickIncidentPerson.textContent = `${person.name}（${person.id}｜${person.category}）`;
+  renderQuickIncidentOptions();
+  els.quickIncidentDialog.showModal();
+}
+
+async function createQuickIncident(person, type) {
   if (!type) {
-    showToast("請先選擇事故類型");
+    showToast("請先選擇事故");
     return;
   }
 
@@ -741,6 +754,8 @@ async function createQuickIncident(person) {
       note: ""
     })
   });
+  els.quickIncidentDialog.close();
+  state.quickIncidentPersonId = null;
   showToast(`${person.name} 已登記 ${type}`);
   await loadDashboard();
 }
@@ -907,7 +922,12 @@ async function handleDocumentClick(event) {
 
   if (action === "quick-add") {
     const person = findPerson(personId);
-    if (person) await createQuickIncident(person);
+    if (person) openQuickIncidentMenu(person);
+  }
+
+  if (action === "choose-quick-incident") {
+    const person = findPerson(state.quickIncidentPersonId);
+    if (person) await createQuickIncident(person, target.dataset.incidentType);
   }
 
   if (action === "delete-person") {
@@ -982,6 +1002,10 @@ function bindEvents() {
   els.incidentForm.addEventListener("submit", handleIncidentSubmit);
   els.closeDialog.addEventListener("click", () => els.dialog.close());
   els.cancelDialog.addEventListener("click", () => els.dialog.close());
+  els.closeQuickIncident.addEventListener("click", () => {
+    els.quickIncidentDialog.close();
+    state.quickIncidentPersonId = null;
+  });
   els.closeIncidentPeople.addEventListener("click", () => els.incidentPeopleDialog.close());
   els.historyFilters.addEventListener("submit", (event) => {
     event.preventDefault();

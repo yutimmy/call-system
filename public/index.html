@@ -87,7 +87,6 @@
         <div class="panel-header">
           <h2>人員清單</h2>
           <div class="people-tools">
-            <select id="quickIncidentType" aria-label="快速登記事故類型"></select>
             <input id="searchInput" type="search" placeholder="搜尋姓名或編號" />
             <button type="button" class="secondary" id="toggleDeleteMode">刪除模式</button>
           </div>
@@ -176,6 +175,19 @@
           <button type="submit">儲存</button>
         </div>
       </form>
+    </dialog>
+
+    <dialog id="quickIncidentDialog">
+      <div class="dialog-card quick-incident-card">
+        <div class="dialog-header">
+          <div>
+            <h2>選擇事故</h2>
+            <p id="quickIncidentPerson" class="muted"></p>
+          </div>
+          <button class="icon-button" type="button" id="closeQuickIncident" aria-label="關閉">×</button>
+        </div>
+        <div id="quickIncidentOptions" class="quick-incident-options"></div>
+      </div>
     </dialog>
 
     <dialog id="incidentPeopleDialog">
