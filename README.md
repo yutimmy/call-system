@@ -32,6 +32,23 @@ npm run check
 npm start
 ```
 
+## Render 部署
+
+1. 到 Render Dashboard，選 `New` -> `Web Service`。
+2. 連接 GitHub repo：`yutimmy/call-system`。
+3. Render 會讀取 `render.yaml`，主要設定如下：
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Health Check Path: `/api/health`
+   - `HOST=0.0.0.0`
+   - `DATA_FILE=/var/data/store.json`
+4. 在 Environment Variables 設定：
+   - `APP_USERNAME`
+   - `APP_PASSWORD`
+5. 部署完成後，Render 會提供 `https://...onrender.com` 網址。
+
+資料保存注意事項：Render 預設檔案系統是暫時性的，重新部署或重啟後，執行期間寫入的 JSON 可能消失。若要長期保存新增/刪除/事故紀錄，請在 Render 服務加 Persistent Disk，Mount Path 設為 `/var/data`。
+
 ## 匯入名單
 
 可使用 `examples/people.sample.json` 測試匯入。格式如下：

@@ -9,7 +9,8 @@ import { z } from "zod";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
-const dataFile = path.join(rootDir, "data", "store.json");
+const seedDataFile = path.join(rootDir, "data", "store.json");
+const dataFile = process.env.DATA_FILE ? path.resolve(process.env.DATA_FILE) : seedDataFile;
 const publicDir = path.join(rootDir, "public");
 
 const PORT = Number(process.env.PORT || 3000);
@@ -127,6 +128,14 @@ async function ensureStore() {
   try {
     await fs.access(dataFile);
   } catch {
+    if (dataFile !== seedDataFile) {
+      try {
+        await fs.copyFile(seedDataFile, dataFile);
+        return;
+      } catch {
+        // Fall through to creating an empty store if no seed file is available.
+      }
+    }
     await writeStore({ people: [], incidents: [], incidentTypes: DEFAULT_INCIDENT_TYPES });
   }
 }
