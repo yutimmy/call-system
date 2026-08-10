@@ -86,13 +86,16 @@
       <section class="panel">
         <div class="panel-header">
           <h2>人員清單</h2>
-          <input id="searchInput" type="search" placeholder="搜尋姓名或編號" />
+          <div class="people-tools">
+            <select id="quickIncidentType" aria-label="快速登記事故類型"></select>
+            <input id="searchInput" type="search" placeholder="搜尋姓名或編號" />
+            <button type="button" class="secondary" id="toggleDeleteMode">刪除模式</button>
+          </div>
         </div>
         <div class="bulk-actions" id="bulkActions" hidden>
           <strong id="selectedCount">已選 0 人</strong>
           <select id="batchIncidentType" aria-label="批次事故類型"></select>
           <input id="batchStartAt" type="datetime-local" aria-label="批次開始時間" />
-          <input id="batchEndAt" type="datetime-local" aria-label="批次結束時間" />
           <input id="batchNote" type="text" maxlength="240" placeholder="備註" aria-label="批次備註" />
           <button type="button" id="applyBatchIncident">批次登記</button>
           <button type="button" class="secondary" id="clearSelection">清除</button>

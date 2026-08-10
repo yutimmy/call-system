@@ -358,6 +358,22 @@ main {
   max-width: 320px;
 }
 
+.people-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.people-tools select {
+  width: 180px;
+}
+
+.people-tools input {
+  width: min(260px, 100%);
+}
+
 .filters input,
 .filters select {
   width: auto;
@@ -446,6 +462,10 @@ th {
 .incident-actions button {
   min-height: 38px;
   padding-inline: 12px;
+}
+
+.row-actions button:only-child {
+  grid-column: 1 / -1;
 }
 
 .badge {
@@ -760,6 +780,10 @@ dialog::backdrop {
   }
 
   .panel-header > input,
+  .people-tools,
+  .people-tools select,
+  .people-tools input,
+  .people-tools button,
   .filters input,
   .filters select,
   .filters button,

@@ -4,6 +4,7 @@ const state = {
   selectedCategory: "全部",
   selectedScopeCategories: new Set(),
   selectedPersonIds: new Set(),
+  deleteMode: false,
   people: [],
   summary: null,
   activeGroups: [],
@@ -35,14 +36,15 @@ const els = {
   scopeFilter: document.querySelector("#scopeFilter"),
   scopeCategoryList: document.querySelector("#scopeCategoryList"),
   incidentCards: document.querySelector("#incidentCards"),
+  quickIncidentType: document.querySelector("#quickIncidentType"),
   searchInput: document.querySelector("#searchInput"),
+  toggleDeleteMode: document.querySelector("#toggleDeleteMode"),
   peopleRows: document.querySelector("#peopleRows"),
   bulkActions: document.querySelector("#bulkActions"),
   selectedCount: document.querySelector("#selectedCount"),
   selectVisiblePeople: document.querySelector("#selectVisiblePeople"),
   batchIncidentType: document.querySelector("#batchIncidentType"),
   batchStartAt: document.querySelector("#batchStartAt"),
-  batchEndAt: document.querySelector("#batchEndAt"),
   batchNote: document.querySelector("#batchNote"),
   applyBatchIncident: document.querySelector("#applyBatchIncident"),
   clearSelection: document.querySelector("#clearSelection"),
@@ -354,10 +356,12 @@ function statusBadge(status) {
 function renderIncidentTypeControls() {
   const currentIncidentType = els.incidentType.value;
   const currentBatchIncidentType = els.batchIncidentType.value;
+  const currentQuickIncidentType = els.quickIncidentType.value;
   const currentHistoryType = els.historyType.value || "全部";
 
   els.incidentType.innerHTML = "";
   els.batchIncidentType.innerHTML = "";
+  els.quickIncidentType.innerHTML = "";
   for (const type of state.incidentTypes) {
     const option = document.createElement("option");
     option.value = type;
@@ -368,12 +372,20 @@ function renderIncidentTypeControls() {
     batchOption.value = type;
     batchOption.textContent = type;
     els.batchIncidentType.append(batchOption);
+
+    const quickOption = document.createElement("option");
+    quickOption.value = type;
+    quickOption.textContent = type;
+    els.quickIncidentType.append(quickOption);
   }
   if (state.incidentTypes.includes(currentIncidentType)) {
     els.incidentType.value = currentIncidentType;
   }
   if (state.incidentTypes.includes(currentBatchIncidentType)) {
     els.batchIncidentType.value = currentBatchIncidentType;
+  }
+  if (state.incidentTypes.includes(currentQuickIncidentType)) {
+    els.quickIncidentType.value = currentQuickIncidentType;
   }
 
   els.historyType.innerHTML = "";
@@ -396,7 +408,6 @@ function renderIncidentTypeControls() {
     badge.textContent = type;
     els.incidentTypeList.append(badge);
   }
-  updateBatchEndVisibility();
 }
 
 function isSelectablePerson(person) {
@@ -439,7 +450,7 @@ function renderPeople() {
   for (const person of state.people) {
     const tr = document.createElement("tr");
     const canAdd = person.enabled && person.status === "正常";
-    const canDelete = person.status === "正常";
+    const canDelete = state.deleteMode && person.status === "正常";
     tr.innerHTML = `
       <td class="select-col">
         <input type="checkbox" data-select-person-id="${person.id}" ${canAdd ? "" : "disabled"} ${state.selectedPersonIds.has(person.id) ? "checked" : ""} aria-label="勾選 ${escapeHtml(person.name)}" />
@@ -450,14 +461,21 @@ function renderPeople() {
       <td>${statusBadge(person.status)}</td>
       <td>
         <div class="row-actions">
-          <button type="button" ${canAdd ? "" : "disabled"} data-action="add" data-person-id="${person.id}">登記事故</button>
-          <button type="button" class="danger" ${canDelete ? "" : "disabled"} data-action="delete-person" data-person-id="${person.id}">刪除</button>
+          <button type="button" ${canAdd ? "" : "disabled"} data-action="quick-add" data-person-id="${person.id}">登記</button>
+          ${state.deleteMode ? `<button type="button" class="danger" ${canDelete ? "" : "disabled"} data-action="delete-person" data-person-id="${person.id}">刪除</button>` : ""}
         </div>
       </td>
     `;
     els.peopleRows.append(tr);
   }
   updateSelectionControls();
+}
+
+function renderDeleteMode() {
+  els.toggleDeleteMode.classList.toggle("danger", state.deleteMode);
+  els.toggleDeleteMode.classList.toggle("secondary", !state.deleteMode);
+  els.toggleDeleteMode.textContent = state.deleteMode ? "結束刪除" : "刪除模式";
+  renderPeople();
 }
 
 function renderActiveIncidents() {
@@ -670,9 +688,7 @@ function updateEndAtVisibility() {
 }
 
 function updateBatchEndVisibility() {
-  const isFullRest = els.batchIncidentType.value === "全休";
-  els.batchEndAt.hidden = isFullRest;
-  if (isFullRest) els.batchEndAt.value = "";
+  // Batch registration intentionally does not ask for an end time.
 }
 
 async function handleIncidentSubmit(event) {
@@ -706,6 +722,27 @@ async function handleIncidentSubmit(event) {
   } catch (error) {
     els.formError.textContent = error.message;
   }
+}
+
+async function createQuickIncident(person) {
+  const type = els.quickIncidentType.value;
+  if (!type) {
+    showToast("請先選擇事故類型");
+    return;
+  }
+
+  await request("/api/incidents", {
+    method: "POST",
+    body: JSON.stringify({
+      personId: person.id,
+      type,
+      startAt: new Date().toISOString(),
+      endAt: null,
+      note: ""
+    })
+  });
+  showToast(`${person.name} 已登記 ${type}`);
+  await loadDashboard();
 }
 
 async function handleImport(event) {
@@ -806,7 +843,7 @@ async function handleBatchIncident() {
     personIds,
     type: els.batchIncidentType.value,
     startAt: inputValueToIso(els.batchStartAt.value),
-    endAt: els.batchIncidentType.value === "全休" ? null : inputValueToIso(els.batchEndAt.value),
+    endAt: null,
     note: els.batchNote.value.trim()
   };
 
@@ -868,6 +905,11 @@ async function handleDocumentClick(event) {
     if (person) openCreateDialog(person);
   }
 
+  if (action === "quick-add") {
+    const person = findPerson(personId);
+    if (person) await createQuickIncident(person);
+  }
+
   if (action === "delete-person") {
     const person = findPerson(personId);
     if (!person) return;
@@ -927,6 +969,10 @@ function bindEvents() {
   els.incidentTypeForm.addEventListener("submit", handleIncidentTypeSubmit);
   els.incidentType.addEventListener("change", updateEndAtVisibility);
   els.batchIncidentType.addEventListener("change", updateBatchEndVisibility);
+  els.toggleDeleteMode.addEventListener("click", () => {
+    state.deleteMode = !state.deleteMode;
+    renderDeleteMode();
+  });
   els.selectVisiblePeople.addEventListener("change", handleVisibleSelectionChange);
   els.applyBatchIncident.addEventListener("click", handleBatchIncident);
   els.clearSelection.addEventListener("click", () => {
