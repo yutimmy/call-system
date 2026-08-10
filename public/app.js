@@ -222,6 +222,10 @@ function inputValueToIso(value) {
   return `${value}:00+08:00`;
 }
 
+function todayInputDate() {
+  return toLocalInputValue().slice(0, 10);
+}
+
 function showToast(message) {
   els.toast.textContent = message;
   els.toast.classList.add("show");
@@ -556,6 +560,9 @@ async function refreshAll() {
 }
 
 async function loadHistoryData() {
+  if (!els.historyDate.value) {
+    els.historyDate.value = todayInputDate();
+  }
   return request(
     apiUrl("/api/incidents/history", {
       ...requestScopeParams(),
@@ -953,6 +960,7 @@ async function init() {
   updateClock();
   window.setInterval(updateClock, 1000);
   bindEvents();
+  els.historyDate.value = todayInputDate();
   const authenticated = await ensureAuthenticated();
   if (authenticated) {
     await startApplication();

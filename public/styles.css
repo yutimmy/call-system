@@ -397,7 +397,9 @@ main {
 }
 
 .table-wrap {
-  overflow-x: auto;
+  max-height: 58vh;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 table {
@@ -418,6 +420,9 @@ th {
   color: var(--muted);
   font-weight: 600;
   background: #fafbf9;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .select-col {
@@ -477,6 +482,9 @@ th {
 .incident-groups {
   display: grid;
   gap: 12px;
+  max-height: 46vh;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .incident-people-list {
@@ -521,6 +529,9 @@ th {
 .history-list {
   display: grid;
   gap: 10px;
+  max-height: 46vh;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .history-item {
@@ -817,7 +828,10 @@ dialog::backdrop {
   }
 
   .table-wrap {
-    overflow: visible;
+    max-height: 58dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 2px;
   }
 
   table {
@@ -826,6 +840,10 @@ dialog::backdrop {
 
   thead {
     display: none;
+  }
+
+  th {
+    position: static;
   }
 
   tbody {
@@ -939,6 +957,13 @@ dialog::backdrop {
 
   .login-card {
     padding: 18px;
+  }
+
+  .incident-groups,
+  .history-list {
+    max-height: 52dvh;
+    overflow-y: auto;
+    padding-right: 2px;
   }
 }
 

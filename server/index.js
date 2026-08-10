@@ -558,6 +558,7 @@ app.get("/api/incidents/history", async (req, res, next) => {
     const type = (query.type || "").trim();
 
     const incidents = store.incidents
+      .filter((incident) => !incident.voided)
       .map((incident) => enrichIncident(incident, peopleMap.get(incident.personId)))
       .filter((incident) => categoryInScope({ category: incident.personCategory }, scope))
       .filter((incident) => !type || type === "全部" || incident.type === type)
