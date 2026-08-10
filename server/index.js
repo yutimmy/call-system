@@ -81,7 +81,7 @@ const historyQuerySchema = z.object({
 
 const app = express();
 const sseClients = new Set();
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "0.0.0.0";
 
 app.use(express.json({ limit: "2mb" }));
 app.use(express.static(publicDir));
